@@ -1,11 +1,6 @@
 from Cred import Cred
 import mysql.connector as ms
-
-def mysql_connection():
-    password,db =  Cred() 
-    mycon=ms.connect(host="localhost",user="root",db=db,passwd=password)
-    cur=mycon.cursor()
-    return mycon,cur
+from mysql_connection import mysql_connection
 
 def logintable(mycon,cur):
     sql='''
