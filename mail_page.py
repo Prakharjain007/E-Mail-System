@@ -1,5 +1,6 @@
 from mysql_connection import mysql_connection 
 import datetime
+from tabulate import tabulate
 
 
 def mail_page(uname):
@@ -9,7 +10,7 @@ def mail_page(uname):
         print("2. Check Sent ")
         print("3. Inbox")
         print("4. Change Password")
-        print("5. Logout")
+        print("5. Logout") 
 
         choice= input("What do you want to perform: ")
         print("\n--------------------------------------------\n")
@@ -17,9 +18,9 @@ def mail_page(uname):
         if(choice=="1"):
             compose(uname)
         elif(choice=='2'):
-            sent()
+            sent(uname)
         elif(choice=="3"):
-            inbox()
+            inbox(uname)
         elif(choice=="4"):
             cgpswd()
         elif(choice == "5"):
@@ -32,7 +33,6 @@ def mail_page(uname):
 def compose(uname):
     mycon,cur = mysql_connection()
     reciver_mail= input("Enter Reciever's Mail ID: ")
-<<<<<<< HEAD
     sub= input("Enter Subject of the Mail: ")
     text=input("Enter the mail text: ")
     print("\n--------------------------------------------\n")
@@ -53,18 +53,42 @@ def compose(uname):
 
 def sent(uname):
     mycon,cur=mysql_connection()
-    sql='selct * from mails'
+    sql='select * from mails'
+    cur.execute(sql)
     result = cur.fetchall()
+    mails=[]
+    for row in result:
+        if row[2]==uname:
+            mails.append(row)
+
+    if(len(mails)==0):
+        print("No Sent Mails")
+        print("\n--------------------------------------------\n")
+
+    else:
+        print("\n--------------------------------------------\n")
+        keys=["Serial No.","Date","Sender","Reciever","Subject","Mail"]
+        print(tabulate(mails, headers = keys, tablefmt = 'pretty', showindex = False))
+        print("\n--------------------------------------------\n")
 
     
+def inbox(uname):
+    mycon,cur=mysql_connection()
+    sql='select * from mails'
+    cur.execute(sql)
+    result = cur.fetchall()
+    mails=[]
+    for row in result:
+        if row[3]==uname:
+            mails.append(row)
 
+    if(len(mails)==0):
+        print("No Recieved Mails")
+        print("\n--------------------------------------------\n")
 
+    else:
+        print("\n--------------------------------------------\n")
+        keys=["Serial No.","Date","Sender","Reciever","Subject","Mail"]
+        print(tabulate(mails, headers = keys, tablefmt = 'pretty', showindex = False))
+        print("\n--------------------------------------------\n")
 
-=======
-    sub= input("Enter Subject of the MailL: ")
-    text=input("Enter the Mail Text: ")
-    sql='Insert into mails values(%s,%s,%s)'
-    data=[uname,reciver_mail,sub,text]
-    cur.execute(sql,data)
-    mycon.commit()
->>>>>>> eaf69e5397c5f060b612c4d28301ec228b9432ee
