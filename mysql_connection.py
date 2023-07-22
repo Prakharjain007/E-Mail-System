@@ -1,5 +1,5 @@
 import mysql.connector as ms
-from Cred import Cred
+from cred.Cred import Cred
 
 def mysql_connection():
     password,db =  Cred() 

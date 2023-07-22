@@ -1,4 +1,4 @@
-from Cred import Cred
+from cred.Cred import Cred
 import mysql.connector as ms
 from mysql_connection import mysql_connection
 
