@@ -32,6 +32,7 @@ def mail_page(uname):
 def compose(uname):
     mycon,cur = mysql_connection()
     reciver_mail= input("Enter Reciever's Mail ID: ")
+<<<<<<< HEAD
     sub= input("Enter Subject of the Mail: ")
     text=input("Enter the mail text: ")
     print("\n--------------------------------------------\n")
@@ -59,3 +60,11 @@ def sent(uname):
 
 
 
+=======
+    sub= input("Enter Subject of the MailL: ")
+    text=input("Enter the Mail Text: ")
+    sql='Insert into mails values(%s,%s,%s)'
+    data=[uname,reciver_mail,sub,text]
+    cur.execute(sql,data)
+    mycon.commit()
+>>>>>>> eaf69e5397c5f060b612c4d28301ec228b9432ee

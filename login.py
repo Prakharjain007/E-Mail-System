@@ -27,7 +27,7 @@ def login():
             print("\n--------------------------------------------\n")
         
         while(True):
-            choice= input("Do you want to login [y/n]: ")
+            choice= input("Do you want to login?[y/n] ")
             print("\n--------------------------------------------\n")
             if(choice.lower()=='y'):
                 login()
