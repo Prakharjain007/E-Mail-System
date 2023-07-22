@@ -1,6 +1,7 @@
 from mysql_connection import mysql_connection 
 import datetime
 from tabulate import tabulate
+import maskpass
 
 def mail_page(uname):
     print("1. Compose")
@@ -15,11 +16,11 @@ def mail_page(uname):
     if(choice=="1"):
         compose(uname)
     elif(choice=='2'):
-        sent()
+        sent(uname)
     elif(choice=="3"):
-        inbox()
+        inbox(uname)
     elif(choice=="4"):
-        cgpswd()
+        changepswd(uname)
     elif(choice == "5"):
         return 
     else:
@@ -104,3 +105,14 @@ def inbox(uname):
         keys=["Serial No.","Date","Sender","Reciever","Subject","Mail"]
         print(tabulate(mails, headers = keys, tablefmt = 'pretty', showindex = False))
         print("\n--------------------------------------------\n")
+
+def changepswd(uname):
+    mycon,cur=mysql_connection()
+    newpswd=maskpass.askpass(prompt="Enter New Password",mask="*")
+    print("\n--------------------------------------------\n")
+
+    sql='update login set password=%s where username=%s'
+    data=[newpswd,uname]
+    cur.execute(sql,data)
+    mycon.commit()
+    print("Password changed Successfully")
