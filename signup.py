@@ -10,7 +10,7 @@ def signup():
     print("Your username should contain '@'")
     uname=input("Enter Your Username: ")
     pswd=maskpass.askpass(prompt="Enter your Password: ",mask="*")
-    print("\n--------------------------------------------\n")
+    print("\n--------------------------------------------\n") 
 
     sql='insert into login values(%s,%s,%s,%s)'
     data = [fname,lname,uname,pswd]

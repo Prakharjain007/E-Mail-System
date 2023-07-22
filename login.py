@@ -1,5 +1,6 @@
 from mysql_connection import mysql_connection
 import maskpass
+from mail_page import mail_page
 
 def login():
     mycon,cur=mysql_connection()
@@ -17,6 +18,7 @@ def login():
             if row[2] == uname and row[3] ==  pswd:
                 print("Login Successfull")
                 print("\n--------------------------------------------\n")
+                mail_page(uname)
                 success= True
                 return
         
@@ -35,6 +37,6 @@ def login():
                 return
             
             else:
-                
+
                 print("Wrong Input Try Again!!!")
                 print("\n--------------------------------------------\n")
