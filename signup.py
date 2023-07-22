@@ -85,14 +85,3 @@ def username_validation(uname):
     
     else:
         return False
-
-
-    
-
-
-
-
-
-    
-
-   
