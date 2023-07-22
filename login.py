@@ -7,9 +7,9 @@ def login():
     uname=input("Enter Your Username: ")
     pswd=maskpass.askpass(prompt="Enter your Password: ",mask="*")
     print("\n--------------------------------------------\n")
+    uname = uname.lower()
 
     sql= 'select * from login'
-
     cur.execute(sql)
     result= cur.fetchall()
     while(True):

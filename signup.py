@@ -5,16 +5,13 @@ from login import login
 def signup():
     mycon,cur = mysql_connection()
 
-<<<<<<< HEAD
-    sql='insert into login values(%s,%s,%s,%s)'
-    data = [fname,lname,uname,pswd]
-=======
     while(True):
         fname=input("Enter Your First Name: ")
         lname=input("Enter Your Last  Name: ")
         print("\n--------------------------------------------\n")
         print("Your Username must contain '@'")
         uname=input("Enter Your Username: ")
+        uname = uname.lower()
         print("\n--------------------------------------------\n") 
         print("Your Password must contain a Number")
         pswd=maskpass.askpass(prompt="Enter your Password: ",mask="*")
@@ -43,9 +40,7 @@ def signup():
 
         else:
             break
-
-    
->>>>>>> eaf69e5397c5f060b612c4d28301ec228b9432ee
+  
     try:
         sql='insert into login values(%s,%s,%s,%s)'
         data = [fname,lname,uname,pswd]
