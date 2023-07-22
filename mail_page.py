@@ -1,5 +1,5 @@
 from mysql_connection import mysql_connection 
-
+import datetime
 
 
 def mail_page(uname):
@@ -11,7 +11,7 @@ def mail_page(uname):
         print("4. Change Password")
         print("5. Logout")
 
-        choice= input("What do you want to perform")
+        choice= input("What do you want to perform: ")
         print("\n--------------------------------------------\n")
 
         if(choice=="1"):
@@ -31,10 +31,31 @@ def mail_page(uname):
 
 def compose(uname):
     mycon,cur = mysql_connection()
-    reciver_mail= input("Enter Reciever's Mail ID")
-    sub= input("Enter Subject of the Mail")
-    text=input("Enter the mail text")
-    sql='Insert into mails values(%s,%s,%s)'
-    data=[uname,reciver_mail,sub,text]
-    cur.execute(sql,data)
-    mycon.commit()
+    reciver_mail= input("Enter Reciever's Mail ID: ")
+    sub= input("Enter Subject of the Mail: ")
+    text=input("Enter the mail text: ")
+    print("\n--------------------------------------------\n")
+    date=datetime.date.today()
+    sql='Insert into mails (mail_date,sender,receiver,subject,text) values(%s,%s,%s,%s,%s)'
+    data=[date,uname,reciver_mail,sub,text]
+    try:
+
+        cur.execute(sql,data)
+        mycon.commit()
+
+    except:
+        print("Something is Wrong!!!!")
+        print("\n--------------------------------------------\n")
+    else:
+        print("Mail Sent Successfully")
+        print("\n--------------------------------------------\n")
+
+def sent(uname):
+    mycon,cur=mysql_connection()
+    sql='selct * from mails'
+    result = cur.fetchall()
+
+    
+
+
+

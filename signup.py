@@ -14,7 +14,6 @@ def signup():
 
     sql='insert into login values(%s,%s,%s,%s)'
     data = [fname,lname,uname,pswd]
-    
     try:
         cur.execute(sql,data)
         mycon.commit()
