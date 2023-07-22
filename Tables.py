@@ -23,7 +23,7 @@ def email(mycon,cur):
     receiver varchar(50) not null,
     subject varchar(50),
     text varchar(500)
-    )
+    ) 
     '''
     cur.execute(sql)
     mycon.commit()

@@ -5,6 +5,10 @@ from login import login
 def signup():
     mycon,cur = mysql_connection()
 
+<<<<<<< HEAD
+    sql='insert into login values(%s,%s,%s,%s)'
+    data = [fname,lname,uname,pswd]
+=======
     while(True):
         fname=input("Enter Your First Name: ")
         lname=input("Enter Your Last  Name: ")
@@ -41,6 +45,7 @@ def signup():
             break
 
     
+>>>>>>> eaf69e5397c5f060b612c4d28301ec228b9432ee
     try:
         sql='insert into login values(%s,%s,%s,%s)'
         data = [fname,lname,uname,pswd]
